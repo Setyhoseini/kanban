@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kanban Todo</title>
+    <link rel="stylesheet" href="assets/css/output.css">
+    <!-- npx tailwindcss -i ./assets/css/input.css -o ./assets/css/output.css --watch -->
+
+    <script src="script.js" defer></script>
+
+</head>
+<body class="bg-background-color">
+    <div class="relative flex sm:max-md:flex-col p-0 m-0">
+
+        <aside class="w-[366px] bg-white top-0 left-0 absolute sm:max-md:static h-[100vh] min-h-[915px] flex justify-center p-6 sm:max-md:w-full box-border sm:max-md:min-h-[800px] sm:max-md:h-[865px]">
+
+            <form novalidate action="" class="flex flex-col gap-y-6 relative h-full w-full box-border sm:max-md:w-full">
+
+                <div class="input-placeholder relative w-full">
+
+                    <input id="title" type="text" required class="text-xl leading-[30px] py-[12px] px-[10px] rounded-lg w-full">
+
+                    <div class="placeholder text-gray-placeholder font-[700] text-[20px] leading-[30px] absolute pointer-events-none top-[25px] bottom-0 h-[54px] left-[10px] m-auto">
+                        Title <span class="text-label-text-red">*</span>
+                    </div>
+                </div>
+               
+
+                <textarea name="" id="description" after="*" placeholder="Description" class="bg-background-color w-full h-[150px] resize-none rounded-lg p-4 placeholder:text-gray-placeholder text-base font-[500]"></textarea>
+
+
+                <div class="flex flex-col flex-wrap content-center w-full">
+                    <div class="flex justify-between w-[302px] py-[12px] sm:max-md:w-full">
+                        <span class="font-[600] relative before:absolute before:left-0 before:top-1/2 before:-translate-y-1/2  before:bg-[url('../images/subtasks-icon.svg')] before:w-6 before:h-6 before:content-[''] pl-8">Subtask</span>
+                        <button type="button" id="add-subtask" onclick="addSubtask()" class="hover:scale-110 active:scale-90"><img src="assets/images/plus-icon.svg" alt=""></button>
+                    </div>
+
+                    <div id="subtasks-list" class="sm:max-md:w-full w-full max-h-[154px] sm:max-md:max-h-[100px] overflow-scroll overflow-x-hidden">
+                    </div>
+                </div>
+
+                <div class="">
+                    <span class="font-[600] relative before:absolute before:left-0 before:top-1/2 before:-translate-y-1/2 before:bg-[url('../images/label-icon.svg')] before:w-6 before:h-6 before:content-[''] pl-8 py-[12px] block">Label</span>
+
+                    <div id="labels" class="w-full flex flex-wrap gap-[8px]">
+                        <button type="button" counter="0" class="label py-[6px] px-[12px] bg-label-bg-purple text-label-text-purple rounded-[6px] font-[700] text-[14px] leading-[21px] max-h-[33px] hover:bg-[rgba(230,230,230,0.7)] active:bg-[rgba(230,230,230,1)]">Design</button>
+
+                        <button type="button" counter="0" class="label py-[6px] px-[12px] bg-label-bg-green text-label-text-green rounded-[6px] font-[700] text-[14px] leading-[21px] max-h-[33px] hover:bg-[rgba(230,230,230,0.7)] active:bg-[rgba(230,230,230,1)]">Development</button>
+
+                        <button type="button" counter="0" class="label py-[6px] px-[12px] bg-label-bg-blue text-label-text-blue rounded-[6px] font-[700] text-[14px] leading-[21px] max-h-[33px] hover:bg-[rgba(230,230,230,0.7)] active:bg-[rgba(230,230,230,1)]">Product</button>
+
+                        <button type="button" counter="0" class="label py-[6px] px-[12px] bg-label-bg-red text-label-text-red rounded-[6px] font-[700] text-[14px] leading-[21px] max-h-[33px] hover:bg-[rgba(230,230,230,0.7)] active:bg-[rgba(230,230,230,1)]">Marketing</button>
+
+                        <button type="button" counter="0" class="label py-[6px] px-[12px] bg-label-bg-aqua text-label-text-aqua rounded-[6px] font-[700] text-[14px] leading-[21px] max-h-[33px] hover:bg-[rgba(230,230,230,0.7)] active:bg-[rgba(230,230,230,1)]">Business</button>
+
+                        <button type="button" counter="0" class="label py-[6px] px-[12px] bg-label-bg-yellow text-label-text-yellow rounded-[6px] font-[700] text-[14px] leading-[21px] max-h-[33px] hover:bg-[rgba(230,230,230,0.7)] active:bg-[rgba(230,230,230,1)]">Operation</button>
+                    </div>
+                </div>
+
+                <div>
+                    <span class="font-[600] relative before:absolute before:left-0 before:top-1/2 before:-translate-y-1/2 before:bg-[url('../images/assignee-icon.svg')] before:w-6 before:h-6 before:content-[''] pl-8 py-[12px] block after:content-['*'] after:text-label-text-red after:ml-1">Assignee</span>
+
+                    <div class="flex items-center p-[8px] w-[318px] gap-[8px]">
+                        <input type="radio" name="assignee" id="first" class="accent-black w-[18px] h-[18px]">
+                        <label for="first" class="text-card-title">Taha Hosseinpour</label>
+                    </div>
+
+                    <div class="flex items-center p-[8px] w-[318px] gap-[8px]">
+                        <input type="radio" name="assignee" id="second" class="accent-black w-[18px] h-[18px]">
+                        <label for="second" class="text-card-title">S.h Mostafavi</label>
+                    </div>
+
+                    <div class="flex items-center p-[8px] w-[318px] gap-[8px]">
+                        <input type="radio" name="assignee" id="third" class="accent-black w-[18px] h-[18px]">
+                        <label for="third" class="text-card-title">Milad Mirzaei</label>
+                    </div>
+                </div>
+
+                <div class="absolute bottom-0 flex gap-3 flex-wrap w-full h-[48px] flex-row justify-between">
+
+                    <button type="button" id="clear-button" onclick="clearAll()" class="text-[16px] leading-[24px] text-label-text-red rounded-lg border-[1.4px] border-label-text-red py-3 px-4 box-border font-[500] hover:bg-label-text-red hover:text-white active:bg-[#AF1740]">Clear All</button>
+
+                    <button type="button" id="create-card-button" onclick="createCard()" class="text-[16px] text-white rounded-lg py-3 px-12 box-border font-[600] bg-black hover:bg-white hover:text-black hover:border-[1.4px] hover:border-black active:bg-slate-400">Create Card</button>
+
+                </div>
+            </form>
+
+        </aside>
+
+        <section class="bg-background-color absolute right-0 box-border overflow-x-scroll sm:max-md:static sm:max-md:w-full overflow-y-hidden h-[915px] p-0">
+
+
+            <div class="flex justify-between pt-[40px] pl-[32px] pr-[60px] min-w-[1080px] gap-12 overflow-x-scroll  h-[2500px] bg-background-color overflow-y-hidden">
+
+                <div class=" flex flex-col gap-[20px] box-border w-[325px] min-w-[325px] max-h-[830px]">
+                    <span class="text-black font-[800] text-[32px]">TO DO</span>
+                    <div id="todo" class="lane flex flex-col gap-[20px] h-[900px] w-[340px] overflow-y-auto box-border overflow-x-hidden pr-[40px] py-1 pl-2">
+                    </div>
+                </div>
+                <div class="flex flex-col gap-[20px] box-border w-[325px] min-w-[320px] max-h-[830px]">
+                    <span class="text-black font-[800] text-[32px]">DOING</span>
+                    <div id="doing" class="lane flex flex-col gap-[20px] h-[900px] w-[340px] overflow-y-auto box-border overflow-x-hidden pr-[40px] py-1 pl-2">
+                    </div>
+                </div>
+                <div class="flex flex-col gap-[20px] box-border w-[325px] min-w-[320px] max-h-[830px]">
+                    <span class="text-black font-[800] text-[32px]">DONE</span>
+                    <div id="done" class="lane flex flex-col gap-[20px] h-[900px] w-[340px] overflow-y-auto box-border overflow-x-hidden pr-[40px] py-1 pl-2">
+                    </div>
+                </div>
+
+            </div>
+
+        </section>
+
+    </div>
+</body>
+</html>

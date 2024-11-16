@@ -1,0 +1,79 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.hidden-checkbox:checked + .custom-checkbox {
+  display: block;
+}
+
+.input-placeholder input:valid + .placeholder {
+  display: none;
+}
+
+section {
+  width: calc(100vw - 376px);
+}
+
+.dragging {
+  border: 2px solid #64A6BD;
+  background-color: rgba(100, 166, 189, 0.3);
+}
+
+.card:hover .x {
+  display: block;
+}
+
+
+
+::-webkit-scrollbar {
+  position: relative;
+  left: 20px;
+  width: 5px;
+  height: 5px;
+  margin-left: 40px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: rgba(242, 244, 247, 1);
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 5px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+
+
+@layer base {
+    @font-face {
+        font-family: "Poppins";
+        src: url("../fonts/Poppins/Poppins-Medium.ttf") format("truetype");
+        font-weight: 500;
+      }
+    @font-face {
+        font-family: "Poppins";
+        src: url("../fonts/Poppins/Poppins-SemiBold.ttf") format("truetype");
+        font-weight: 600;
+      }
+    @font-face {
+        font-family: "Poppins";
+        src: url("../fonts/Poppins/Poppins-Bold.ttf") format("truetype");
+        font-weight: 700;
+      }
+    @font-face {
+        font-family: "Poppins";
+        src: url("../fonts/Poppins/Poppins-ExtraBold.ttf") format("truetype");
+        font-weight: 800;
+      }
+    
+    * {
+        font-family: "Poppins";
+    }
+}
